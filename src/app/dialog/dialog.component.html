@@ -1,0 +1,29 @@
+<h3>Add Alarm</h3>
+<form #form="ngForm" (ngSubmit)="createAlarm(form.value)" ngNativeValidate>
+  <div fxLayout="column" fxLayoutGap="8px">
+    <md-input-container>
+      <input mdInput ngModel type="number" name="hour" placeholder="Hour" required>
+    </md-input-container>
+    <md-input-container>    
+      <input mdInput ngModel type="number" name="minute" placeholder="Minute" required>
+    </md-input-container>
+
+    <md-input-container>
+      <textarea mdInput ngModel name="label" placeholder="Label" rows="1" cols="60" required></textarea>
+    </md-input-container>
+
+    <div fxLayout="row" fxLayoutGap="24px">
+      <md-checkbox ngModel name="monday">Monday</md-checkbox>
+      <md-checkbox ngModel name="tuesday">Tuesday</md-checkbox>
+      <md-checkbox ngModel name="wednesday">Wednesday</md-checkbox>
+      <md-checkbox ngModel name="thursday">Thursday</md-checkbox>
+      <md-checkbox ngModel name="friday">Friday</md-checkbox>
+      <md-checkbox ngModel name="saturday">Saturday</md-checkbox>
+      <md-checkbox ngModel name="Sunday">Sunday</md-checkbox>
+    </div>
+  </div>
+  <md-dialog-actions align="end">
+    <button md-button type="button" (click)="dialogRef.close()">Cancel</button>
+    <button md-button color="accent">Save Alarm</button>
+  </md-dialog-actions>
+</form>

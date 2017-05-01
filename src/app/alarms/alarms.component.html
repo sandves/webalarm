@@ -1,0 +1,66 @@
+<div fxLayout="column" fxFlex [class.dark-theme]="isDarkTheme">
+
+  <md-toolbar color="primary">
+    <span>Web Alarm</span>
+
+    <!-- Filler that pushes the menu button to the end of the toolbar -->
+    <span fxFlex></span>
+
+    <button md-icon-button [mdMenuTriggerFor]="themeMenu">
+      <md-icon>more_vert</md-icon>
+    </button>
+
+  </md-toolbar>
+  
+  <md-sidenav-container fxFlex>
+    <md-sidenav mode="side" opened>
+
+      <md-tab-group>
+        <md-tab label="Alarms">
+          <md-nav-list>
+            <md-list-item *ngFor="let alarm of alarms | async" (click)="selectedAlarm = alarm">
+              <md-icon svgIcon="alarm-clock" class="avatar"></md-icon>
+              <span>{{alarm.time.hour}}:{{alarm.time.minute}}</span>
+              <md-slide-toggle style="margin-left: 40px; margin-top: 12px;" [(ngModel)]=alarm.enabled (change)="update(alarm.$key, alarm)"></md-slide-toggle>
+            </md-list-item>
+          </md-nav-list>
+        </md-tab>
+        <md-tab label="Settings">
+          <span>Settings</span>
+        </md-tab>
+      </md-tab-group>
+
+    </md-sidenav>
+    <div *ngIf="selectedAlarm" class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
+
+      <md-card fxFlex="80">
+        <md-icon svgIcon="alarm-clock" class="avatar"></md-icon>
+        <h2>
+          {{selectedAlarm.time.hour}}:{{selectedAlarm.time.minute}}
+          <md-slide-toggle [(ngModel)]=selectedAlarm.enabled (change)="update(selectedAlarm.$key, selectedAlarm)">Enabled</md-slide-toggle>             
+        </h2>
+        <p>{{selectedAlarm.label}}</p>
+      </md-card>
+      <md-card fxFlex fxLayout="column" fxLayoutGap="14px">
+        <md-slide-toggle [(ngModel)]="selectedAlarm.monday" (change)="update(selectedAlarm.$key, selectedAlarm)">Monday</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedAlarm.tuesday" (change)="update(selectedAlarm.$key, selectedAlarm)">Tuesday</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedAlarm.wednesday" (change)="update(selectedAlarm.$key, selectedAlarm)">Wednesday</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedAlarm.thursday" (change)="update(selectedAlarm.$key, selectedAlarm)">Thursday</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedAlarm.friday" (change)="update(selectedAlarm.$key, selectedAlarm)">Friday</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedAlarm.saturday" (change)="update(selectedAlarm.$key, selectedAlarm)">Saturday</md-slide-toggle>
+        <md-slide-toggle [(ngModel)]="selectedAlarm.sunday" (change)="update(selectedAlarm.$key, selectedAlarm)">Sunday</md-slide-toggle>        
+      </md-card>
+      
+    </div>
+  </md-sidenav-container>
+
+  <md-menu #themeMenu x-position="before">
+    <button md-menu-item (click)="isDarkTheme = !isDarkTheme">Toggle Theme</button>
+    <button md-menu-item *ngIf="af.auth | async" (click)="logout()">Log out</button>
+  </md-menu>
+
+  <button md-fab (click)="openAdminDialog()" class="fab-bottom-right">
+    <md-icon>add</md-icon>
+  </button>
+
+</div>

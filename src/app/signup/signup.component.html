@@ -1,0 +1,23 @@
+<div class="form-container">
+  <div class="center-content">
+    <md-card style="width: 400px;">
+      <md-card-title>
+        Join now
+      </md-card-title>
+      <md-card-content>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" ngNativeValidate>
+          <div fxLayout="column" fxLayoutGap="8px">
+            <md-input-container>
+              <input mdInput ngModel name="email" type="email" placeholder="Email" required>
+            </md-input-container>
+            <md-input-container>
+              <input mdInput ngModel name="password" type="password" placeholder="Password" required>
+            </md-input-container>
+          </div>
+          <button md-raised-button color="accent">Create Account</button>
+          <p style="color: red;" *ngIf="error">{{ error }}</p>
+        </form>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

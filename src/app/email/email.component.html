@@ -1,0 +1,24 @@
+<div class="form-container">
+  <div class="center-content">
+    <md-card style="width: 400px;">
+      <md-card-title>
+        Custom Login
+      </md-card-title>
+      <md-card-content>
+        <form #form="ngForm" (ngSubmit)="onSubmit(form.value)" ngNativeValidate>
+          <div fxLayout="column" fxLayoutGap="8px">
+            <md-input-container>
+              <input mdInput ngModel name="email" type="email" placeholder="Email" required>
+            </md-input-container>
+            <md-input-container>
+              <input mdInput ngModel name="password" type="password" placeholder="Password" required>
+            </md-input-container>
+          </div>
+          <button md-raised-button color="accent">Log in</button>
+          <p style="color: red;" *ngIf="error">{{ error }}</p>
+        </form>
+      </md-card-content>
+      <a routerLink="/signup">Don't have an account?</a>
+    </md-card>
+  </div>
+</div>
