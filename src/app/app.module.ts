@@ -22,12 +22,7 @@ import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
 
 export const firebaseConfig = {
-    apiKey: 'AIzaSyADN4IoKrdkbymOfaGNvGNwB6aJ1WgYjPs',
-    authDomain: 'webalarm-97cec.firebaseapp.com',
-    databaseURL: 'https://webalarm-97cec.firebaseio.com',
-    projectId: 'webalarm-97cec',
-    storageBucket: 'webalarm-97cec.appspot.com',
-    messagingSenderId: '514857813906'
+    // Put your firebase config here
   };
 
 export const firebaseAuthConfig = {
